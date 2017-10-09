@@ -41,11 +41,34 @@ module.exports = {
           //resolve-url-loader may be chained before sass-loader if necessary
           use: ['css-loader', 'sass-loader']
         })
+        //   use: [{
+        //       loader: 'style-loader', // inject CSS to page
+        //   }, {
+        //       loader: 'css-loader', // translates CSS into CommonJS modules
+        //   }, {
+        //       loader: 'postcss-loader', // Run post css actions
+        //       options: {
+        //           plugins: function () { // post css plugins, can be exported to postcss.config.js
+        //               return [
+        //                   require('precss'),
+        //                   require('autoprefixer')
+        //               ];
+        //           }
+        //       }
+        //   }, {
+        //       loader: 'sass-loader' // compiles SASS to CSS
+        //   }]
       }
     ]
   },
   // Use the plugin to specify the resulting filename (and add needed behavior to the compiler)
   plugins: [
     new ExtractTextPlugin("./dist/css/[name].css")
+    // new ProvidePlugin({
+    //   $: 'jquery',
+    //   jQuery: 'jquery',
+    //   'window.jQuery': 'jquery',
+    //   Popper: ['popper.js', 'default']
+    // })
   ]
 };
