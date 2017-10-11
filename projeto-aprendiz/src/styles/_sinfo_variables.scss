@@ -1,7 +1,26 @@
-$azul-1: #9DC4F2;
-$azul-2: #00C4F2;
+//Cores sinfo
+
+$cinza-01: #EEF2F4;
+$cinza-02: #D8E1EA;
+$cinza-025: #CFD7E0;
+$cinza-03: #A4B2C8;
+$cinza-04: #838E9F;
+$cinza-05: #717A89;
+$cinza-06: #5B6372;
+
+$azul-01: #9DC4F2 ;
+$azul-02: #72A8E5  ;
+$azul-03: #2D5D98 ;
+
+$amarelo-01: #EFD650  ;
+$amarelo-02: #FDF3C5 ;
+$amarelo-03: #D8CFAA ;
+
+$branco: #FFFFFF;
+$preto: #000000;
+
 
 $btn-colors-hover: (
-  primary: $azul-2,
+  primary: $azul-02,
   secondary: black
 ) !default;

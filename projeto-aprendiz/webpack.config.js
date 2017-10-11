@@ -1,4 +1,5 @@
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -34,35 +35,46 @@ module.exports = {
       },
     ],
     rules: [
-      {
-        test: /\.s(a|c)ss$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          //resolve-url-loader may be chained before sass-loader if necessary
-          use: ['css-loader', 'sass-loader']
-        })
-        //   use: [{
-        //       loader: 'style-loader', // inject CSS to page
-        //   }, {
-        //       loader: 'css-loader', // translates CSS into CommonJS modules
-        //   }, {
-        //       loader: 'postcss-loader', // Run post css actions
-        //       options: {
-        //           plugins: function () { // post css plugins, can be exported to postcss.config.js
-        //               return [
-        //                   require('precss'),
-        //                   require('autoprefixer')
-        //               ];
-        //           }
-        //       }
-        //   }, {
-        //       loader: 'sass-loader' // compiles SASS to CSS
-        //   }]
-      }
+        {
+            test: /\.s(a|c)ss$/,
+            use: ExtractTextPlugin.extract({
+                fallback: 'style-loader',
+                //resolve-url-loader may be chained before sass-loader if necessary
+                use: ['css-loader', 'sass-loader']
+            })
+            //   use: [{
+            //       loader: 'style-loader', // inject CSS to page
+            //   }, {
+            //       loader: 'css-loader', // translates CSS into CommonJS modules
+            //   }, {
+            //       loader: 'postcss-loader', // Run post css actions
+            //       options: {
+            //           plugins: function () { // post css plugins, can be exported to postcss.config.js
+            //               return [
+            //                   require('precss'),
+            //                   require('autoprefixer')
+            //               ];
+            //           }
+            //       }
+            //   }, {
+            //       loader: 'sass-loader' // compiles SASS to CSS
+            //   }]
+        },
+        {
+            //test: /\.pug$/,
+            //use: 'pug-html-loader'
+            test: /\.pug/,
+            loaders: ['html-loader', 'pug-html-loader']
+        }
     ]
   },
   // Use the plugin to specify the resulting filename (and add needed behavior to the compiler)
   plugins: [
+      new HtmlWebpackPlugin({
+          title: 'Custom template',
+          hash: true,
+          template: 'body-buttons.pug' // Load a custom template (ejs by default see the FAQ for details)
+      }) ,
     new ExtractTextPlugin("./dist/css/[name].css")
     // new ProvidePlugin({
     //   $: 'jquery',
