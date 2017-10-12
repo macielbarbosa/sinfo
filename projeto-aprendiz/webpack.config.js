@@ -18,25 +18,28 @@ module.exports = {
         query: {
           presets: ['es2015']
         }
-      },
-      {
-        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-        loader: 'url-loader',
-        options: {
-          limit: 10000,
-          name: 'fonts/[name].[hash:7].[ext]'
-        },
-        test: /\.(woff2?|eot|ttf|otf)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: 'url-loader',
-        options: {
-          limit: 10000,
-          name: 'fonts/[name].[hash:7].[ext]'
-        }
-      },
+      }
     ],
     rules: [
         {
-            test: /\.s(a|c)ss$/,
+            test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+            use: [
+                {
+                    loader: 'url-loader',
+                    options: {
+                        mimetype: 'application/font-woff'
+                    }
+                }
+            ]
+        },
+        {
+            test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+            use: [
+                { loader: 'file-loader' }
+            ]
+        },
+        {
+          test: /\.s(a|c)ss$/,
             use: ExtractTextPlugin.extract({
                 fallback: 'style-loader',
                 //resolve-url-loader may be chained before sass-loader if necessary
@@ -66,6 +69,7 @@ module.exports = {
             test: /\.pug/,
             loaders: ['html-loader', 'pug-html-loader']
         }
+
     ]
   },
   // Use the plugin to specify the resulting filename (and add needed behavior to the compiler)

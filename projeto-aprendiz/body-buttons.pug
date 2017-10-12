@@ -4,22 +4,28 @@ html(lang="pt")
     title='buttons'
     meta(charset='utf8')
   body
-    .container
-      h4 Botões extendidos
+    .container.d-flex.flex-column.justify-content-end
+      .row.justify-content-center
+        h4
+          p Botões extendidos
       .row.justify-content-center
         .col-md-5
           .card
             .card-body
-              h6.card-title Botões primários
-              .card-text class .btn-extend-primary
-              .d-flex.flex-colunn.justify-content-around
-                button(class='btn btn-danger') Responder
+              h6.card-title Botões secundários
+              p.card-text class .btn-extend-secondary
+              .d-flex.justify-content-around
+                button.btn.btn-danger
+                  i.fa.fa-arrow-circle-left Responder
+                button.btn.btn-danger
+                  i.fa.fa-arrow-circle-right Encaminhar
         .col-md-5
           .card
             .card-body
-              h6.card-title Botões secundários
-              .card-text class .btn-extend-secondary
+              h6.card-title Botões primários
+              p.card-text class .btn-extend-primary
+
               .d-flex.flex-colunn.justify-content-around
-                button(class='btn btn-danger') Responder
-                button(class='btn btn-danger') Encaminhar
+                button.btn.btn-danger
+                  i.fa.fa-sign-in Finalizar
 
