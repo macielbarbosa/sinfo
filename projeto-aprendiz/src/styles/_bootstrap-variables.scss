@@ -101,7 +101,7 @@ gray-dark: $gray-800
 ) !default;
 
 $theme-colors: (
-primary: $azul-01,
+primary: $azul-02,
 secondary: $gray-600,
 success: $green,
 info: $cyan,
@@ -109,7 +109,7 @@ warning: $yellow,
 danger: $red,
 light: $gray-100,
 dark: $gray-800
-) !default;
+);
 
 // Set a specific jump point for requesting color jumps
 $theme-color-interval: 8% !default;
@@ -243,7 +243,7 @@ $font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, 
 $font-family-monospace:  "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
 $font-family-base:       $font-family-sans-serif !default;
 
-$font-size-base: 1rem !default; // Assumes the browser default, typically `16px`
+$font-size-base: 0.875rem; // Assumes the browser default, typically `16px`
 $font-size-lg:   1.25rem !default;
 $font-size-sm:   .875rem !default;
 
@@ -332,9 +332,9 @@ $table-inverse-color:           $body-bg !default;
 //
 // For each of Bootstrap's buttons, define text, background and border color.
 
-$input-btn-padding-y:       .5rem !default;
-$input-btn-padding-x:       .75rem !default;
-$input-btn-line-height:     1.25 !default;
+$input-btn-padding-y:       .375rem;
+$input-btn-padding-x:       .625rem;
+$input-btn-line-height:     0;
 
 $input-btn-padding-y-sm:    .25rem !default;
 $input-btn-padding-x-sm:    .5rem !default;
@@ -344,7 +344,7 @@ $input-btn-padding-y-lg:    .5rem !default;
 $input-btn-padding-x-lg:    1rem !default;
 $input-btn-line-height-lg:  1.5 !default;
 
-$btn-font-weight:                $font-weight-normal !default;
+$btn-font-weight:                $font-weight-bold;
 $btn-box-shadow:                 inset 0 1px 0 rgba($white,.15), 0 1px 1px rgba($black,.075) !default;
 $btn-focus-box-shadow:           0 0 0 3px rgba(theme-color("primary"), .25) !default;
 $btn-active-box-shadow:          inset 0 3px 5px rgba($black,.125) !default;
@@ -354,7 +354,7 @@ $btn-link-disabled-color:        $gray-600 !default;
 $btn-block-spacing-y:            .5rem !default;
 
 // Allows for customizing button radius independently from global border radius
-$btn-border-radius:              $border-radius !default;
+$btn-border-radius:              15px;
 $btn-border-radius-lg:           $border-radius-lg !default;
 $btn-border-radius-sm:           $border-radius-sm !default;
 
@@ -368,7 +368,7 @@ $input-disabled-bg:              $gray-200 !default;
 
 $input-color:                    $gray-700 !default;
 $input-border-color:             rgba($black,.15) !default;
-$input-btn-border-width:         $border-width !default; // For form controls and buttons
+$input-btn-border-width:         2px; // For form controls and buttons
 $input-box-shadow:               inset 0 1px 1px rgba($black,.075) !default;
 
 $input-border-radius:            $border-radius !default;
