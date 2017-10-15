@@ -1,0 +1,24 @@
+=sinfo-button-variant($background)
+  background-color: $background
+  border-color: $border
+
+  &:hover
+    background-color: $active-background
+    border-color: $active-border
+
+  // Disabled comes first so active can properly restyle
+  &.disabled,
+  &:disabled
+    background-color: $background
+    border-color: $border
+
+//  &:active,
+//  &.active,
+//  .show > &.dropdown-toggle {
+//    background-color: $active-background;
+//    background-image: none; // Remove the gradient for the pressed/active state
+//    border-color: $active-border;
+//    @include box-shadow($btn-active-box-shadow);
+//}
+//}
+
