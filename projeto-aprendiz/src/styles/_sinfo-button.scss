@@ -1,0 +1,59 @@
+@each $color, $value in $theme-colors {
+  .btn-#{$color} {
+    background-color: $value;
+    font-family: $font-button;
+    @if $color == primary{
+      border-color: $value;
+      color: $branco;
+      &:focus,
+      &.focus{
+        background-color: $value;
+        border-color: $value;
+        box-shadow: none;
+      }
+      &:disabled,
+      &.disabled{
+        background-color: $cinza-02;
+        border-color: $cinza-02;
+        color: $branco;
+      }
+    }
+    @else if $color == secondary{
+      border-color: $azul-02;
+      color: $azul-02;
+      &:disabled,
+      &.disabled{
+        background-color: $value;
+        border-color: $cinza-02;
+        color: $cinza-02;
+      }
+    }
+    &:hover,
+    &.hover{
+      background-color: $azul-01;
+      border-color: $azul-01;
+      color: $branco;
+    }
+    &:active,
+    &.active{
+      background-color: $azul-02;
+      border-color: $azul-02;
+      color: $branco;
+    }
+    > i ~ span{
+      margin-left: 10px;
+    }
+    > span ~ i{
+      margin-left: 10px;
+    }
+  }
+}
+
+.comprimido{
+  border-radius: 50%;
+  padding: 6px;
+  i{
+    width: 14px;
+  }
+}
+
