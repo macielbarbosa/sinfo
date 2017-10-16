@@ -1,0 +1,40 @@
+.footer{
+  max-width: $max-width-footer;
+  min-width: $min-width-footer;
+  padding: $padding-footer;
+  background-color: $cinza-01;
+  border-top: $border-top-footer;
+  font-family: $font-footer;
+  color: $cinza-04;
+  .text-footer{
+    padding: 0 30px;
+    margin-right: auto;
+  }
+  @media screen and (max-width: $tablet-screen){
+    padding: 16.5px 30px;
+    .text-footer{
+      flex-wrap: wrap;
+      //flex-direction: column !important;
+    }
+  }
+  @media screen and (max-width: $smartphone-screen){
+    flex-wrap: wrap;
+    padding: 10px 50px;
+    height: 100px;
+    .text-footer{
+      order:3;
+      width: 213px;
+      padding: 10px 0px 8px;
+      margin: auto;
+    }
+    #logo-ufrn{
+      order:2;
+      margin-left: 30px;
+    }
+  }
+  span{
+    font-size: 14px;
+    line-height: 16px;
+    white-space: nowrap;
+  }
+}

@@ -21,4 +21,18 @@ $preto: #000000;
 
 //font
 
-$font-button: 'Open Sans', sans-serif;
+$font-sinfo: 'Open Sans', sans-serif;
+$font-button: $font-sinfo;
+$font-footer: $font-sinfo;
+
+//media screan
+
+$tablet-screen: 810px;
+$smartphone-screen: 490px;
+
+//footer
+
+$max-width-footer: 1280px;
+$min-width-footer: 308px;
+$padding-footer: 21px 30px;
+$border-top-footer: 1px solid $cinza-025;
