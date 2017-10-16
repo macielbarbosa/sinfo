@@ -77,7 +77,8 @@ module.exports = {
       new HtmlWebpackPlugin({
           title: 'Custom template',
           hash: true,
-          template: 'footer.pug' // Load a custom template (ejs by default see the FAQ for details)
+          //template: 'footer.pug' // Load a custom template (ejs by default see the FAQ for details)
+          template: 'body-buttons.pug' // Load a custom template (ejs by default see the FAQ for details)
       }) ,
     new ExtractTextPlugin("./dist/css/[name].css")
     // new ProvidePlugin({

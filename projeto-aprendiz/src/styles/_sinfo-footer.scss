@@ -1,5 +1,4 @@
 .footer{
-  max-width: $max-width-footer;
   min-width: $min-width-footer;
   padding: $padding-footer;
   background-color: $cinza-01;
@@ -7,19 +6,24 @@
   font-family: $font-footer;
   color: $cinza-04;
   .text-footer{
-    padding: 0 30px;
+    padding: $padding-text-footer;
     margin-right: auto;
+    span{
+      font-size: 14px;
+      line-height: 16px;
+      white-space: nowrap;
+    }
   }
   @media screen and (max-width: $tablet-screen){
-    padding: 16.5px 30px;
+    padding: $padding-tablet-screen;
     .text-footer{
       flex-wrap: wrap;
     }
   }
   @media screen and (max-width: $smartphone-screen){
     flex-wrap: wrap;
-    padding: 10px 50px;
-    height: 100px;
+    padding: $padding-smartphone-screen;
+    height: $height-smartphone-screen;
     .text-footer{
       order:3;
       width: 228.81px;
@@ -30,10 +34,5 @@
       order:2;
       margin-left: 40px;
     }
-  }
-  span{
-    font-size: 14px;
-    line-height: 16px;
-    white-space: nowrap;
   }
 }
