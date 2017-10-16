@@ -14,7 +14,6 @@
     padding: 16.5px 30px;
     .text-footer{
       flex-wrap: wrap;
-      //flex-direction: column !important;
     }
   }
   @media screen and (max-width: $smartphone-screen){
@@ -23,13 +22,13 @@
     height: 100px;
     .text-footer{
       order:3;
-      width: 213px;
+      width: 228.81px;
       padding: 10px 0px 8px;
       margin: auto;
     }
     #logo-ufrn{
       order:2;
-      margin-left: 30px;
+      margin-left: 40px;
     }
   }
   span{
