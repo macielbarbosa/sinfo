@@ -1,0 +1,61 @@
+{
+  "name": "reuse",
+  "version": "1.0.0",
+  "description": "Sistema de Reaproveitamento de bens da UFRN.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://gitdesenvolvimento.info.ufrn.br/sites/reuse.git"
+  },
+  "scripts": {
+    "js": "uglifyjs src/js/* -o dist/js/main.min.js --source-map dist/js/main.min.js.map -p 5 -c -m",
+    "sass": "node-sass src/sass/ -o dist/css/ --output-style compressed --source-map true",
+    "css:prefix": "postcss --no-map.inline --use autoprefixer dist/css/*.css -d dist/css",
+    "img": "copy src\\img\\* dist\\img",
+    "ico": "copy src\\img\\*.ico dist\\img",
+    "pug": "pug email.pug -P --out ./dist",
+    "prebuild_": "mkdir -p dist/js dist/css dist/img",
+    "build": "npm-run-all js sass css:prefix img ico pug --parallel",
+    "prepublish": "npm run build",
+    "prestart": "npm run build",
+    "start": "concurrently \"lite-server\" \"rerun-script\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "watches": {
+    "js": "src/js/**",
+    "sass": "src/sass/**",
+    "css:prefix": "src/sass/**",
+    "img": "src/img/**",
+    "ico": "src/img/*.ico",
+    "pug": "**/*.pug"
+  },
+  "keywords": [
+    "reuse",
+    "ufrn",
+    "sinfo"
+  ],
+  "author": "Elton Viana",
+  "license": "MIT",
+  "devDependencies": {
+    "autoprefixer": "^6.5.3",
+    "concurrently": "^3.1.0",
+    "imagemin-newer": "^1.0.2",
+    "lite-server": "^2.2.2",
+    "node-sass": "^3.10.1",
+    "normalize-css": "^2.3.1",
+    "npm-run-all": "^3.1.1",
+    "postcss-cli": "^2.6.0",
+    "pug": "^2.0.0-rc.1",
+    "pug-cli": "^1.0.0-alpha6",
+    "rerun-script": "^0.6.0",
+    "uglify-js": "^2.7.4"
+  },
+  "dependencies": {
+    "bootstrap-sass": "^3.3.7",
+    "datatables.net": "^1.10.12",
+    "datatables.net-bs": "^1.10.12",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.1.1",
+    "owl.carousel": "^2.2.0"
+  }
+}
