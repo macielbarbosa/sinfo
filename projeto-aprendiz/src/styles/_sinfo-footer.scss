@@ -1,38 +1,92 @@
 .footer{
-  min-width: $min-width-footer;
-  padding: $padding-footer;
+  padding: $padding-footer-smartphone-screen;
   background-color: $cinza-01;
   border-top: $border-top-footer;
-  font-family: $font-footer;
   color: $cinza-04;
-  .text-footer{
-    padding: $padding-text-footer;
-    margin-right: auto;
-    span{
-      font-size: 14px;
-      line-height: 16px;
-      white-space: nowrap;
-    }
-  }
-  @media screen and (max-width: $tablet-screen){
-    padding: $padding-tablet-screen;
-    .text-footer{
-      flex-wrap: wrap;
-    }
-  }
-  @media screen and (max-width: $smartphone-screen){
+
+  .footer-container{
     flex-wrap: wrap;
-    padding: $padding-smartphone-screen;
-    height: $height-smartphone-screen;
-    .text-footer{
-      order:3;
-      width: 228.81px;
-      padding: 10px 0px 8px;
-      margin: auto;
+
+    //@extend .container;
+    //@extend .row;
+    @extend .d-flex;
+    @extend .flex-row;
+    @extend .justify-content-between;
+    @extend .align-items-center;
+
+    > .brand{
+      order: 1;
+      margin: 10px 30px 10px 0;
     }
-    #logo-ufrn{
-      order:2;
-      margin-left: 40px;
+
+    > .instituicao{
+      order: 2;
+      text-align: right;
+      margin: 10px 0 10px 30px;
     }
+
+    > .content{
+      min-width: calc(320px - 60px);
+      order: 3;
+      .text {
+        display: block;
+      }
+    }
+
+
+    @include media-breakpoint-up(sm) {
+      > .instituicao,
+      > .brand {
+        margin-top: 0px;
+        margin-bottom: 0px;
+      }
+
+      > .instituicao {
+        order: 3;
+      }
+
+      > .content {
+        order: 2;
+        flex-grow: 2;
+      }
+    }
+
+    @include media-breakpoint-up(md) {
+      > .content{
+        display: inline-block !important;
+
+        .text{
+          display: inline-block;
+        }
+        .text + .text:nth-child(2) {
+          &:before{
+            content: "|";
+            padding: 0 7px;
+          }
+        }
+        .text:last-child {
+          display: block;
+        }
+      }
+    }
+
+    @include media-breakpoint-up(lg) {
+      > .content{
+        .text + .text {
+          &:before {
+            content: "|";
+            padding: 0 7px;
+          }
+        }
+        .text:last-child {
+          display: inline-block;
+        }
+      }
+    }
+
   }
 }
+
+
+
+

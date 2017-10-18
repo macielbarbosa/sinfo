@@ -28,14 +28,14 @@ $font-footer: $font-sinfo;
 //media screan
 
 $tablet-screen: 835px;
-$smartphone-screen: 522px;
+$smartphone-screen: 530px;
 
 //footer
 
-$min-width-footer: 322px;
+//$min-width-footer: 322px;
 $padding-footer: 21px 30px;
 $border-top-footer: 1px solid $cinza-025;
 $padding-text-footer: 0 30px;
-$padding-tablet-screen: 16.5px 30px;
-$padding-smartphone-screen: 10px 50px;
-$height-smartphone-screen: 100px;
+$padding-footer-tablet-screen: 16.5px 30px;
+$padding-footer-smartphone-screen: 10px 50px;
+$height-footer-smartphone-screen: 100px;
