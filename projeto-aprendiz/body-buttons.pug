@@ -6,20 +6,14 @@ html(lang="pt")
   body
     .container.d-flex.flex-column.justify-content-end
       .row.justify-content-center
-        h4 Botões extendidos
-      .row.justify-content-center
         .col-md-5
           .card
             .card-body
-              h6.card-title Botões secundários
-              p.card-text class .btn-secondary
+              h6.card-title Botão primário
+              p.card-text
+                code .btn-primary
               .d-flex.justify-content-around
-                button.btn.btn-secondary
-                  i.fa.fa-arrow-circle-left
-                  span Responder
-                button.btn.btn-secondary
-                  i.fa.fa-arrow-circle-right
-                  span Encaminhar
+                button.btn.btn-primary Primary
         .col-md-5
           .card
             .card-body
@@ -29,12 +23,9 @@ html(lang="pt")
                 button(type='button' class='btn btn-primary')
                   i.fa.fa-sign-in
                   span Finalizar
-                button(type='button' class='btn btn-primary')
-                  span Finalizar
+
                   i.fa.fa-sign-in
     .container.d-flex.flex-column.justify-content-end
-          .row.justify-content-center
-            h4 Botões comprimidos
           .row.justify-content-center
             .col-md-5
               .card
@@ -51,7 +42,7 @@ html(lang="pt")
             .col-md-5
               .card
                 .card-body
-                  h6.card-title Botõe primários
+                  h6.card-title Botões primários
                   p.card-text class .btn-primary .comprimido
                   .d-flex.flex-colunn.justify-content-around
                     button(type='button' class='btn btn-primary comprimido')
