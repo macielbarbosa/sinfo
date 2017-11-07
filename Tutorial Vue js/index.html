@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Vue</title>
+	<meta charset="utf-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+</head>
+<style>
+  body {
+    margin-left:600px
+  }
+  h5 {
+    margin-top: 30px
+  }
+</style>
+<body>
+  <h5>Pratica</h5>
+  <div id="app-pratica">
+    selecionado: {{selected}}
+    <dropdown opcoes="array2" :selected="3" :use-empty="true"></dropdown>
+  </div>
+  <h5>Contador</h5>
+  <div id="contador">
+    <simple-counter></simple-counter>
+    <simple-counter></simple-counter>
+    <simple-counter></simple-counter>
+  </div>
+  <h5>Componente registrado localmente</h5>
+  <div id="comp-local">
+    <meu-componente></meu-componente>
+    <table>
+      <tr is="minha-linha"></tr>
+    </table>
+  </div>
+  <h5>Vinculando valores</h5>
+  <div id="vinc-val">
+    <input
+      type="checkbox"
+      v-model="toggle"
+      v-bind:true-value="'marcado'"
+      v-bind:false-value="'não-marcado'"
+    >
+    <span>Selecionado: {{ toggle }}</span>
+  </div>
+  <h5>v-model em select</h5>
+  <div id="select">
+    <select v-model="selected">
+      <option v-for="option in options" :value="option.value">
+        {{ option.text }}
+      </option>
+    </select>
+    <br>
+    <span>Selecionado: {{ selected }}</span>
+  </div>
+  <h5>v-model em radio</h5>
+  <div id="radio">
+    <input type="radio" id="one" value="Um" v-model="picked">
+    <label for="one">Um</label>
+    <br>
+    <input type="radio" id="two" value="Dois" v-model="picked">
+    <label for="two">Dois</label>
+    <br>
+    <span>Escolhido: {{ picked }}</span>
+  </div>
+  <h5>v-model em checkbox</h5>
+  <div id="checkbox">
+    <input type="checkbox" v-model="checado">
+    <span>{{checado}}</span>
+    <br>
+    <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+    <label for="jack">Jack</label>
+    <input type="checkbox" id="john" value="John" v-model="checkedNames">
+    <label for="john">John</label>
+    <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+    <label for="mike">Mike</label>
+    <br>
+    <span>Nomes assinalados: {{ checkedNames }}</span>
+  </div>
+  <h5>Modificadores de teclado</h5>
+  <div id='mod-teclado'>
+    <p>Envia ao digitar 'alt+y'</p>
+    <input type="text" @keyup.alt.y="enviar" v-model="entrada">
+  </div>
+  <h5>Chamada direta de métodos</h5>
+  <div id="chamada-direta">
+    <button v-on:click="diga('oi')">Diga oi</button>
+    <button v-on:click="diga('tchau')">Diga tchau</button>
+    <p>O botão abaixo funciona apenas uma vez</p>
+    <button v-on:click.once="warn('Form cannot be submitted yet.', $event)">
+      Enviar
+    </button>
+  </div>
+  <h5>Métodos em manipuladores</h5>
+  <div id="example-2">
+    <!-- `greet` é o nome de um método definido abaixo -->
+    <button v-on:click="greet">Cumprimentar</button>
+  </div>
+  <h5>Manipulação de eventos</h5>
+  <div id="onclick">
+    <button v-on:click="contador += 1">Adiciona 1</button>
+    <p>Quantas vezes o botão acima foi clicado: {{ contador }}</p>
+  </div>
+  <h5>Componentes com v-for</h5>
+  <div id="todo-list-example">
+    <input
+      v-model="newTodoText"
+      v-on:keyup.enter="addNewTodo"
+      placeholder="Adicionar uma tarefa"
+    >
+    <ul>
+      <li
+        is="lista-afazer"
+        v-for="(todo, index) in todos"
+        v-bind:key="todo.id"
+        v-bind:title="todo.title"
+        v-on:remove="todos.splice(index, 1)"
+      ></li>
+    </ul>
+  </div>
+
+  <h5>Intervalo numérico</h5>
+  <div id="intervalo">
+    <span v-for="n in 10">{{n}}; </span>
+  </div>
+
+  <h5>Resultados filtrados/alinhados</h5>
+  <div id="filtro">
+    <span v-for="n in pares(numeros)">{{n}}; </span>
+  </div>
+
+  <h5>Detectando mudanças em objetos</h5>
+  <div id="modObj">
+    <ul>
+      <li v-for="atributo in objeto">{{atributo}}</li>
+    </ul>
+  </div>
+
+  <h5>Key</h5>
+  <ul id="key">
+    <li v-for="item in itens">
+      {{ item.mensagem }}
+    </li>
+  </ul>
+
+  <h5>Lista objeto</h5>
+  <ul id="listas2">
+    <li v-for="(atributo,chave,indice) in objeto">
+      {{ indice }} - {{chave}} : {{atributo }}
+    </li>
+  </ul>
+
+  <h5>Lista array</h5>
+  <ul id="listas">
+    <li v-for="(item, indice) in itens">
+      {{ titulo }} - {{ indice }} - {{ item.mensagem }}
+    </li>
+  </ul>
+
+  <h5>v-show</h5>
+  <div id="vshow">
+    <p v-show="mostrar">Está me mostrando</p>
+  </div>
+
+  <h5>Reutilização com key</h5>
+  <div id="reut-key">
+    <login :type="'usuario'"></login>
+  </div>
+
+  <h5>Renderização condicional</h5>
+  <div id="condicional">
+    <div v-if="Math.random() > 0.5">
+      Agora você me vê
+    </div>
+    <div v-else>
+      Agora você não me vê
+    </div>
+    <span v-if="ok">Sim</span>
+    <span v-else>Não</span>
+  </div>
+
+  <h5>Valores múltiplos</h5>
+  <div id="valores-multiplos" v-bind:style="{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }">
+    Opa e aí vey!
+  </div>
+
+  <h5>Estilos inline</h5>
+  <p id="estilo-inline" v-bind:style="[paragrafo,botao]">Essa fera aí meu</p>
+  <h5>Vinculando classes com array</h5>
+  <div id="classes-array">
+    <button class="btn" :class='[styleButton, text]'>Button</button>
+  </div>
+
+  <h5>Vinculando classes com objetos</h5>
+  <div id="classes-objeto">
+    <button class="btn" :class='classObject'>Button</button>
+  </div>
+
+  <h5>watch response</h5>
+	<div id="watch-response">
+    <p>Faça uma pergunta</p>
+    <input type="text" v-model="pergunta">
+    <p>{{resposta}}</p>
+  </div>
+
+	<div id="app">
+    <h5>app1</h5>
+		<app-one></app-one>
+		<br>
+
+		<h5>app2</h5>
+		<app-two></app-two>
+
+		<h5>app3</h5>
+		<app-three></app-three>
+
+		<h5>app4</h5>
+		<app-four></app-four>
+	</div>
+
+  <h5>app5</h5>
+	<div id="app-5">
+		<p>{{ message }}</p>
+		<button @click='reverseMessage'>Inverter Mensagem</button>
+	</div>
+
+	<h5>app6</h5>
+	<div id="app-6">
+		<p>{{ message }}</p>
+		<input v-model='message' type="text">
+	</div>
+
+	<h5>app7</h5>
+	<div id="app-7">
+		<ul>
+			<todo-item
+				v-for="item in list"
+				:todo='item'
+				:id='item.id'>
+			</todo-item>
+		</ul>
+	</div>
+
+	<h5>Computed</h5>
+	<div id="computed">
+		<p>O inverso de "{{ mensagem }}" é, através de computed: "{{ mensagemInversa() }}".</p>
+		<p>Através de JavaScript inline é: "{{ mensagem.split('').reverse().join('') }}"</p>
+		<p>Ambos fazem o mesmo. Porém o computed é mais legível.</p>
+	</div>
+
+	<h5>Fullname com watch</h5>
+	<div id="watch">
+		firstname
+		<input type="text" v-model="firstname">
+		lastname
+		<input type="text" v-model="lastname">
+		<br>
+		fullname: {{fullname}}
+	</div>
+
+	<h5>Fullname com computed</h5>
+	<div id="fullname-computed">
+		firstname
+		<input type="text" v-model="firstname">
+		lastname
+		<input type="text" v-model="lastname">
+		<br>
+		fullname: {{fullname}}
+	</div>
+
+	<h5>Computed com get e set</h5>
+	<div id="computed-gs">
+		firstname
+		<input type="text" v-model="firstname">
+		lastname
+		<input type="text" v-model="lastname">
+		<br>
+		fullname: {{fullname}}
+	</div>
+
+    <script src="vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
+	<script src="tutorialvue.js"></script>
+</body>
+</html>

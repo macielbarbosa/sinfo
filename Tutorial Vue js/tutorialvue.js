@@ -1,24 +1,275 @@
-var data = {
-  app1: {
-    message: 'Opa! Eae Vue!'
-  },
-  app2: {
-    title: 'Você carregou esta página em ' + new Date().toLocaleString()
-  },
-  app3: {
-    ver: true
-  },
-  app4: {
-    todos: [
-      { text: 'Aprender JavaScript' },
-      { text: 'Aprender Vue' },
-      { text: 'Criar algo incrível' }
-    ]
-  },
-  login: {
-    tipo: 'email'
-  }
+var dados = {
+  array1: [
+    {id:1, valor: 'valor 1 array 1'},
+    {id:2, valor: 'valor 2 array 1'}
+  ],
+  array2: [
+    {id:1, valor: 'valor 1 array 2'},
+    {id:2, valor: 'valor 2 array 2'},
+    {id:3, valor: 'valor 3 array 2'},
+    {id:4, valor: 'valor 4 array 2'},
+    {id:5, valor: 'valor 5 array 2'}
+  ]
 };
+
+Vue.component('dropdown', {
+    props: ['opcoes','selected','useEmpty'],
+    computed: {
+      array: function () {
+        return dados[this.opcoes]
+      }
+    },
+    template: "<select selectedIndex=selected>" +
+    "<option value='' v-show='useEmpty' >--- selecionae ---</option>" +
+    "<option v-for='item in array' :value='item.valor' >{{item.id}} - {{item.valor}} </option>" +
+    "</select>",
+    mounted: function() {
+      this.selected
+    }
+});
+
+var vm = new Vue({
+  el: '#app-pratica',
+  data: function () {
+    return {
+      selected: dados.array2[1]
+    }
+  }
+});
+
+new Vue ({
+  el: '#contador',
+  components: {
+    'simple-counter': {
+      template: '<button v-on:click="contador += 1">{{ contador }}</button>',
+      // data é tecnicamente uma função, assim o Vue não vai
+      // reclamar, mas nós retornamos a mesma referência ao
+      // mesmo objeto para qualquer instância do componente
+      data: function () {
+        return {contador: 0}
+      }
+    }
+  }
+});
+
+new Vue ({
+  el: '#comp-local',
+  components: {
+    'meu-componente': {
+      template: '<div>Componente personalizado</div>'
+    },
+    'minha-linha': {
+      template: '<tr>Minha linha</tr>'
+    }
+}
+});
+
+new Vue ({
+  el: '#vinc-val',
+  data: function () {
+    return {
+      toggle: 'marcado'
+    }
+  }
+});
+
+new Vue ({
+  el: '#select',
+  data: function () {
+    return {
+      selected: 'A',
+      options: [
+        { text: 'Um', value: 'A' },
+        { text: 'Dois', value: 'B' },
+        { text: 'Três', value: 'C' }
+      ]
+    }
+  }
+});
+
+new Vue ({
+  el: '#radio',
+  data: function () {
+    return {
+      picked: ''
+    }
+  }
+});
+
+new Vue ({
+  el: '#checkbox',
+  data: {
+    checado: true,
+    checkedNames: []
+  }
+});
+
+Vue.config.keyCodes.y = 89;
+
+new Vue({
+  el: '#mod-teclado',
+  data: {
+    entrada: ''
+  },
+  methods: {
+    enviar: function () {
+      alert(this.entrada);
+      this.entrada = ''
+    }
+  }
+});
+
+new Vue({
+  el: '#chamada-direta',
+  methods: {
+    diga: function(string) {
+      alert(string)
+    },
+    warn: function (message, event) {
+      // agora temos acesso ao evento nativo
+      if (event) event.preventDefault();
+      alert(message);
+    }
+  }
+});
+
+var example2 = new Vue({
+  el: '#example-2',
+  data: {
+    name: 'Vue.js'
+  },
+  // define métodos dentro do objeto `methods`
+  methods: {
+    greet: function (event) {
+      // `this` dentro de métodos aponta para a instância Vue
+      alert('Olá ' + this.name + '!')
+      // `event` é o evento DOM nativo
+      if (event) {
+        alert(event.target.tagName)
+      }
+    }
+  }
+});
+
+var onclick = new Vue({
+  el: '#onclick',
+  data: {
+    contador: 0
+  }
+});
+
+Vue.component('lista-afazer', {
+  template: "<li>{{ title }}<button v-on:click=\"$emit(\'remove\')\">X</button></li>",
+  props: ['title']
+});
+
+new Vue({
+  el: '#todo-list-example',
+  data: {
+    newTodoText: '',
+    todos: [
+      {
+        id: 1,
+        title: 'Lavar os pratos'
+      },
+      {
+        id: 2,
+        title: 'Tirar o lixo'
+      },
+      {
+        id: 3,
+        title: 'Cortar a grama'
+      }
+    ],
+    nextTodoId: 4
+  },
+  methods: {
+    addNewTodo: function () {
+      this.todos.push({
+        id: this.nextTodoId++,
+        title: this.newTodoText
+      });
+      this.newTodoText = ''
+    }
+  }
+});
+
+var intervalo = new Vue({
+  el: '#intervalo'
+});
+
+var numeros = new Vue ({
+  el: "#filtro",
+  data: {
+    numeros: [1,2,3,4,5,6,7]
+  },
+  methods: {
+    pares: function (array) {
+      return array.filter(function (n) {
+        return n%2==0
+      })
+    }
+  }
+});
+
+var modobj = new Vue ({
+  el: "#modObj",
+  data: {
+    objeto: {
+      indice: 1,
+      mensagem: "Opa e ai"
+    }
+  }
+});
+
+var key = new Vue ({
+  el: "#key",
+  data: {
+    itens: [
+      {
+        indice: 1,
+        mensagem: "Opa e ai"
+      },
+      {
+        indice: 3,
+        mensagem: "tudo bao"
+      },
+      {
+        indice: 4,
+        mensagem: "tudo e voce?"
+      }
+    ]
+  }
+});
+
+var lista2 = new Vue ({
+  el: "#listas2",
+  data: {
+    objeto: {
+      atributo1: 'dado1',
+      atributo2: 'dado2',
+      atributo3: 'dado3'
+    }
+  }
+});
+
+var lista1 = new Vue ({
+  el: "#listas",
+  data: {
+    titulo: "Item da lista",
+    itens: [
+      {mensagem: "Opa e ai"},
+      {mensagem: "tudo bao"}
+    ]
+  }
+});
+
+var vshow = new Vue ({
+  el: '#vshow',
+  data: {
+    mostrar: true
+  }
+});
 
 Vue.component('login',{
   props: ['type'],
@@ -28,7 +279,6 @@ Vue.component('login',{
       return this.type === 'usuario' ? 'Informe o nome de usuário' : 'Informe o endereço de e-mail'
     },
     typeText: function () {
-      debugger
       return this.type === 'usuario' ? 'Usuário' : 'E-mail'
     }
   }
@@ -137,8 +387,24 @@ var watchResponse = new Vue({
   }
 });
 
-
-
+var data = {
+  app1: {
+    message: 'Opa! Eae Vue!'
+  },
+  app2: {
+    title: 'Você carregou esta página em ' + new Date().toLocaleString()
+  },
+  app3: {
+    ver: true
+  },
+  app4: {
+    todos: [
+      { text: 'Aprender JavaScript' },
+      { text: 'Aprender Vue' },
+      { text: 'Criar algo incrível' }
+    ]
+  }
+};
 
 Vue.component('app-one',{
     template: '<div>{{ message }}</div>',
@@ -169,7 +435,7 @@ Vue.component('app-four',{
 });
 
 
-var vm = new Vue({
+var vim = new Vue({
     el: '#app',
     data: data
 });
