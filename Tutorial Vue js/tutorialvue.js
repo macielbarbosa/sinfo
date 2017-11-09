@@ -1,39 +1,47 @@
 var dados = {
   array1: [
-    {id:1, valor: 'valor 1 array 1'},
-    {id:2, valor: 'valor 2 array 1'}
+    {id: 0, valor: 'valor 0 array 1'},
+    {id: 1, valor: 'valor 1 array 1'},
+    {id: 2, valor: 'valor 2 array 1'}
   ],
   array2: [
-    {id:1, valor: 'valor 1 array 2'},
-    {id:2, valor: 'valor 2 array 2'},
-    {id:3, valor: 'valor 3 array 2'},
-    {id:4, valor: 'valor 4 array 2'},
-    {id:5, valor: 'valor 5 array 2'}
+    {id: 0, valor: 'valor 0 array 2'},
+    {id: 1, valor: 'valor 1 array 2'},
+    {id: 2, valor: 'valor 2 array 2'},
+    {id: 3, valor: 'valor 3 array 2'},
+    {id: 4, valor: 'valor 4 array 2'}
   ]
 };
 
 Vue.component('dropdown', {
-    props: ['opcoes','selected','useEmpty'],
-    computed: {
-      array: function () {
-        return dados[this.opcoes]
-      }
-    },
-    template: "<select selectedIndex=selected>" +
-    "<option value='' v-show='useEmpty' >--- selecionae ---</option>" +
-    "<option v-for='item in array' :value='item.valor' >{{item.id}} - {{item.valor}} </option>" +
-    "</select>",
-    mounted: function() {
-      this.selected
+  template: "<select v-model='selecionado' v-on:change='onChange($event.target.value)'>" +
+  "<option value='a' v-if='useEmpty' selected>--selecione--</option>" +
+  "<option v-for='item in opcoes' :value='item.value'>{{item.id}} - {{item.valor}}</option>" +
+  "</select>",
+  props: ['opcoes','useEmpty'],
+  computed: {
+    selecionado: function () {
+      return this.value
     }
+  },
+  methods: {
+    onChange: function (value){
+      if(value=='a'){
+        value = {id: 1, valor: 'valor 1 array 2'}
+      }
+      this.$emit('input',value)
+    }
+  }
+
 });
 
 var vm = new Vue({
   el: '#app-pratica',
-  data: function () {
-    return {
-      selected: dados.array2[1]
-    }
+  data: {
+    array1: dados.array1,
+    array2: dados.array2,
+    selected1: dados.array1[0],
+    selected2: dados.array2[1]
   }
 });
 
@@ -61,7 +69,7 @@ new Vue ({
     'minha-linha': {
       template: '<tr>Minha linha</tr>'
     }
-}
+  }
 });
 
 new Vue ({
@@ -407,140 +415,140 @@ var data = {
 };
 
 Vue.component('app-one',{
-    template: '<div>{{ message }}</div>',
-    data: function () {
-        return data.app1
-    }
+  template: '<div>{{ message }}</div>',
+  data: function () {
+    return data.app1
+  }
 });
 
 Vue.component('app-two',{
-    template: '<div><span :title="title">Pare o mouse sobre mim e veja a dica interligada dinamicamente!</span></div>',
-    data: function () {
-        return data.app2
-    }
+  template: '<div><span :title="title">Pare o mouse sobre mim e veja a dica interligada dinamicamente!</span></div>',
+  data: function () {
+    return data.app2
+  }
 });
 
 Vue.component('app-three',{
-    template: "<div><p v-if='ver'>Agora você me viu</p></div>",
-    data: function () {
-        return data.app3
-    }
+  template: "<div><p v-if='ver'>Agora você me viu</p></div>",
+  data: function () {
+    return data.app3
+  }
 });
 
 Vue.component('app-four',{
-    template: "<ol><li v-for='algo in todos'>{{ algo.text }}</li></ol>",
-    data: function () {
-        return data.app4
-    }
+  template: "<ol><li v-for='algo in todos'>{{ algo.text }}</li></ol>",
+  data: function () {
+    return data.app4
+  }
 });
 
 
 var vim = new Vue({
-    el: '#app',
-    data: data
+  el: '#app',
+  data: data
 });
 
 var app5 = new Vue({
-	el: '#app-5',
-	data: {
-		message: "Maciel Barbosa"
-	},
-	methods: {
-		reverseMessage: function () {
-			this.message = this.message.split('').reverse().join('')
-		}
-	}
+  el: '#app-5',
+  data: {
+    message: "Maciel Barbosa"
+  },
+  methods: {
+    reverseMessage: function () {
+      this.message = this.message.split('').reverse().join('')
+    }
+  }
 });
 
 var app6=  new Vue({
-	el: '#app-6',
-	data: {
-		message: "Sinfo"
-	}
+  el: '#app-6',
+  data: {
+    message: "Sinfo"
+  }
 });
 
 Vue.component('todo-item',{
-	props: ['todo','id'],
-	template: '<li>{{ id }} {{ todo.text}}</li>'
+  props: ['todo','id'],
+  template: '<li>{{ id }} {{ todo.text}}</li>'
 });
 
 var app7 = new Vue({
-	el: '#app-7',
-	data: {
-		list: [
-			{ id:0, text: 'Vegetais' },
-			{ id:1, text: 'Queijo' },
-			{ id:2, text: 'Qualquer coisa' }
-		]
-	}
+  el: '#app-7',
+  data: {
+    list: [
+      { id:0, text: 'Vegetais' },
+      { id:1, text: 'Queijo' },
+      { id:2, text: 'Qualquer coisa' }
+    ]
+  }
 });
 
 var computed = new Vue({
-	el: '#computed',
-	data: {
-		mensagem: "Opa! e ae"
-	},
-    methods:{
-	  mensagemInversa: function () {
-          return this.mensagem.split('').reverse().join('')
-      }
-    },
-	computed: {
-		mensagemInversa: function () {
-			return this.mensagem.split('').reverse().join('')
-		}/*,
+  el: '#computed',
+  data: {
+    mensagem: "Opa! e ae"
+  },
+  methods:{
+    mensagemInversa: function () {
+      return this.mensagem.split('').reverse().join('')
+    }
+  },
+  computed: {
+    mensagemInversa: function () {
+      return this.mensagem.split('').reverse().join('')
+    }/*,
         now: function () {
 		    return Date.now()
         }*/
-	}
+  }
 });
 
 var watch = new Vue({
-    el: '#watch',
-    data: {
-        firstname: 'Maciel',
-        lastname: 'Barbosa',
-        fullname: 'Maciel Barbosa'
+  el: '#watch',
+  data: {
+    firstname: 'Maciel',
+    lastname: 'Barbosa',
+    fullname: 'Maciel Barbosa'
+  },
+  watch: {
+    firstname: function (first) {
+      this.fullname = first + ' ' + this.lastname
     },
-    watch: {
-        firstname: function (first) {
-            this.fullname = first + ' ' + this.lastname
-        },
-        lastname: function (val) {
-            this.fullname = this.firstname + ' ' + val
-        }
+    lastname: function (val) {
+      this.fullname = this.firstname + ' ' + val
     }
+  }
 });
 
 var fullnameComputed = new Vue({
-    el: '#fullname-computed',
-    data: {
-        firstname: 'Maciel',
-        lastname: 'Barbosa'
-    },
-    computed: {
-        fullname: function () {
-            return this.firstname + ' ' + this.lastname
-        }
+  el: '#fullname-computed',
+  data: {
+    firstname: 'Maciel',
+    lastname: 'Barbosa'
+  },
+  computed: {
+    fullname: function () {
+      return this.firstname + ' ' + this.lastname
     }
+  }
 });
 
 var computedgs = new Vue({
-    el: '#computed-gs',
-    data: {
-        firstname: 'Maciel',
-        lastname: 'Barbosa'
-    },
-    computed: {
-        fullname: {
-            get: function () {
-                return this.firstname + ' ' + this.lastname
-            },
-            set: function (newValue) {
-                var names =  newValue.split(' ');
-                this.firstname = names.shift();
-                this.lastname = names.pop()
-            }
-        }
+  el: '#computed-gs',
+  data: {
+    firstname: 'Maciel',
+    lastname: 'Barbosa'
+  },
+  computed: {
+    fullname: {
+      get: function () {
+        return this.firstname + ' ' + this.lastname
+      },
+      set: function (newValue) {
+        var names =  newValue.split(' ');
+        this.firstname = names.shift();
+        this.lastname = names.pop()
+      }
     }
+  }
 });

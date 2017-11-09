@@ -14,10 +14,13 @@
   }
 </style>
 <body>
-  <h5>Pratica</h5>
+  <h5>Prática</h5>
   <div id="app-pratica">
-    selecionado: {{selected}}
-    <dropdown opcoes="array2" :selected="3" :use-empty="true"></dropdown>
+    <dropdown v-model="selected1" :opcoes="array1" :use-empty="true"></dropdown>
+    item selecionado: {{selected1}}
+    <br><br>
+    <dropdown v-model="selected2" :opcoes="array2" :use-empty="false"></dropdown>
+    item selecionado: {{selected2}}
   </div>
   <h5>Contador</h5>
   <div id="contador">
