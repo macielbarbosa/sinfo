@@ -15,8 +15,8 @@ var dados = {
 
 Vue.component('dropdown', {
   template: "<select v-model='selecionado' v-on:change='onChange($event.target.value)'>" +
-  "<option value='a' v-if='useEmpty' selected>--selecione--</option>" +
-  "<option v-for='item in opcoes' :value='item.value'>{{item.id}} - {{item.valor}}</option>" +
+  "<option value='' v-if='useEmpty' selected>--selecione--</option>" +
+  "<option v-for='item in opcoes' :value=item.valor>{{item.id}} - {{item.valor}}</option>" +
   "</select>",
   props: ['opcoes','useEmpty'],
   computed: {
@@ -26,8 +26,8 @@ Vue.component('dropdown', {
   },
   methods: {
     onChange: function (value){
-      if(value=='a'){
-        value = {id: 1, valor: 'valor 1 array 2'}
+      if(value==''){
+        value = 'valorVazio'
       }
       this.$emit('input',value)
     }
